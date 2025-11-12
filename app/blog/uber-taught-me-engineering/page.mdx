@@ -1,0 +1,121 @@
+export const metadata = {
+  title: 'How 2,000 Uber Rides Made Me a Better Engineer',
+  description:
+    'Driving taught me more about system design, patience, and feedback loops than any tech job ever did.',
+  alternates: {
+    canonical: '/blog/uber-taught-me-engineering',
+  },
+};
+
+<Cover
+  src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1400&q=80"
+  alt="Night highway lights viewed from a car windshield — Unsplash"
+  caption="Unsplash / Matthew Henry"
+/>
+
+# How 2,000 Uber Rides Made Me a Better Engineer
+
+When I started driving for Uber, I thought I was pausing my tech career.  
+I didn’t realize I was enrolling myself in one of the best systems-design courses on earth.
+
+Two thousand rides later, I see every dispatch, detour, and rating as a micro-lesson in engineering — about feedback loops, latency, user empathy, and resilience.
+
+---
+
+## The Road as a Real-Time System
+
+Uber isn’t just a company; it’s a distributed system running in the physical world.  
+Every trip is an event, every route a pipeline, every rating a data point.
+
+As a driver, you operate as a *microservice* in a massive, constantly changing architecture.  
+When a rider cancels, surge pricing spikes, or the app crashes mid-trip, you learn — viscerally — what system instability feels like.
+
+You start to appreciate why **graceful degradation** matters.  
+Because in the real world, downtime means someone is stranded in the cold.
+
+---
+
+## Feedback Loops and Latency
+
+Uber’s feedback loops are instant.  
+A 5-star rating tells you what’s working; a 4-star tells you nothing and everything at once.
+
+That immediacy made me obsessed with response times in my own software.  
+Users don’t just expect performance — they *feel* latency as frustration.
+
+Driving taught me that latency isn’t just technical; it’s emotional.  
+Whether you’re waiting for a pickup or an API response, the user’s patience is the real timeout value.
+
+---
+
+## Debugging Under Pressure
+
+Every night behind the wheel is live debugging: unpredictable inputs, no rollback, limited observability.  
+You learn to isolate variables fast:
+
+- Is the map wrong, or the traffic data stale?  
+- Is the rider’s pin misplaced, or the GPS inaccurate?  
+- Is it you — or the system?
+
+That mindset — quick diagnosis under uncertainty — translated directly into how I debug production issues today.  
+Logs and monitors are helpful, but intuition comes from repeated failure in unpredictable conditions.
+
+---
+
+## The Human Interface Layer
+
+In software, we talk about user empathy.  
+In Uber, empathy isn’t optional — it’s survival.
+
+You interact with every demographic, mood, and mental state.  
+You learn that user experience is not a wireframe; it’s how someone *feels* while trusting your system for 15 minutes.
+
+That changed how I think about UX as an engineer.  
+I stopped writing code “for users” and started writing it *with users in mind* — understanding their emotional bandwidth as part of the design spec.
+
+---
+
+## Scalability and Burnout
+
+Systems scale until the weakest component fails — and so do humans.
+
+During long shifts, fatigue becomes technical debt.  
+Ignoring it feels efficient short-term but leads to costly errors later.  
+That’s true for both distributed systems and distributed minds.
+
+I learned that sustainable engineering is about pacing — rate limiting yourself before you crash the system.
+
+---
+
+## What Driving Taught Me About Building
+
+- **Resilience isn’t perfection.** It’s graceful failure recovery.  
+- **Optimization has limits.** Not every edge case deserves a patch.  
+- **Feedback is gold.** The faster you close the loop, the smarter your system gets.  
+- **Empathy scales harder than infrastructure.** Build for humans first, systems second.
+
+---
+
+## Reflections
+
+Driving for Uber didn’t just pay the bills — it gave me a new mental model for software.  
+Every product has riders and drivers. Every feature has friction.  
+And every system, no matter how digital, eventually runs on human patience.
+
+---
+
+### Further Reading
+
+- [The Myth of the Perfect System](https://martinfowler.com/articles/design.html)  
+- [Human-Centered Engineering Principles](https://uxdesign.cc/human-centered-engineering)  
+- [What “Resilience” Really Means in Systems](https://queue.acm.org/detail.cfm?id=2371297)
+
+---
+
+### Music for Focus
+
+🎧 *“Drive” by Ben Khan* — a perfect track for debugging life at 3 a.m., both on the road and in production.
+
+---
+
+_This post is part of my “Building from the Road” series — lessons in systems, empathy, and design learned from 2,000 rides behind the wheel._

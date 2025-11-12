@@ -12,16 +12,44 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://nim-fawn.vercel.app/'),
+  metadataBase: new URL('https://lanreadebayo.com/'),
   alternates: {
-    canonical: '/'
+    canonical: '/',
   },
   title: {
-    default: 'Nim - Personal website template',
-    template: '%s | Nim'
+    default: 'Lanre Adebayo — Applied AI & Full-Stack Engineer',
+    template: '%s | Lanre Adebayo',
   },
-  description:  'Nim is a free and open-source personal website template built with Next.js 15, React 19 and Motion-Primitives.',
+  description:
+    'Lanre Adebayo is an Applied AI and Full-Stack Engineer building intelligent, intuitive, and high-performance web experiences. Passionate about bridging design, engineering, and AI to create meaningful digital products.',
+  openGraph: {
+    title: 'Lanre Adebayo — Applied AI & Full-Stack Engineer',
+    description:
+      'Building intelligent, intuitive, and high-performance web experiences. Portfolio, blog, and projects by Lanre Adebayo.',
+    url: 'https://lanreadebayo.com/',
+    siteName: 'Lanre Adebayo',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Lanre Adebayo — Applied AI & Full-Stack Engineer',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Lanre Adebayo — Applied AI & Full-Stack Engineer',
+    description:
+      'Applied AI & Full-Stack Engineer focused on building intelligent, human-centered web experiences.',
+    creator: '@lanreadebayo', // change to your actual handle if you have one
+    images: ['/og-image.png'],
+  },
 };
+
+
 
 const geist = Geist({
   variable: '--font-geist',

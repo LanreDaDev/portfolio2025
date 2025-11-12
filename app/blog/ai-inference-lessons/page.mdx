@@ -1,0 +1,187 @@
+export const metadata = {
+  title: 'Latency, Cost, and Sanity: Lessons from AI Inference in Production',
+  description:
+    'What I learned scaling inference on GCP and AWS — and how to balance cost, speed, and reliability.',
+  alternates: {
+    canonical: '/blog/ai-inference-lessons',
+  },
+};
+
+<Cover
+  src="https://images.unsplash.com/flagged/photo-1579274216947-86eaa4b00475?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=927"
+  alt="Server racks and AI data center — Unsplash"
+  caption="Unsplash / Massimo Botturi"
+/>
+
+# Latency, Cost, and Sanity: Lessons from AI Inference in Production
+
+Building AI demos is fun.  
+Running AI inference at scale is… *humbling.*
+
+You start with a model that works beautifully in your notebook.  
+Then you deploy it, get real users, and suddenly you’re debugging latency spikes, cost overruns, and rate limits at 3 a.m.
+
+This post is about what I learned from that transition — scaling multiple inference-heavy projects on **AWS** and **GCP** using limited credits, tight budgets, and a lot of patience.
+
+---
+
+## 1. Latency Is the Real UX
+
+When people think about model performance, they obsess over accuracy.  
+But in production, **latency is the only metric users actually feel.**
+
+Even a small delay creates the illusion that the system is “thinking” — and not in a good way.
+
+I learned this fast while building my video interview analysis app.  
+Every millisecond between “submit” and “response” broke user flow.
+
+### Lessons
+
+- Cache aggressively. Everything. Transcripts, embeddings, even prompts.  
+- Batch small requests — one large call is faster and cheaper than ten small ones.  
+- Use async pipelines with user-facing feedback (“Analyzing your response…”).  
+- If it takes longer than 2 seconds, *acknowledge the wait*. Perception management is half the battle.
+
+> **Takeaway:** Performance is empathy expressed through code.
+
+---
+
+## 2. The Cost Spiral Is Real
+
+Inference costs sneak up on you like compound interest.
+
+You think: “It’s just a few cents per request.”  
+Then you add retries, parallel calls, background jobs — and you’re staring at a $200 bill from one weekend of tests.
+
+### How I Survived
+
+- **Use credits strategically.** AWS Activate + GCP for redundancy and model diversity.  
+- **Build a cost dashboard early.** Track spend per feature, not per month.  
+- **Offload when possible.** Whisper → local or serverless GPU when feasible.  
+- **Token discipline.** Truncate, compress, summarize — every token counts.
+
+I learned to treat **prompt size as a system resource**, not a creative indulgence.
+
+---
+
+## 3. Reliability Is a Cultural Problem
+
+Tech issues are solvable. Reliability issues come from *chaos culture*.
+
+When you’re solo or small-team, discipline matters more than tooling.  
+You need clear rituals for recovery, rollback, and rest.
+
+### Practical Patterns
+
+- Always have a “safe fallback” — even if it’s a dumb static response.  
+- Log everything: model name, latency, input size, output tokens, errors.  
+- Create test prompts for regression. Models update silently; your system shouldn’t break silently.  
+- Use queues (e.g., Pub/Sub, SQS) to protect against spikes.
+
+Reliability is built in the boring moments — not during outages.
+
+---
+
+## 4. GCP vs. AWS: The Tradeoffs
+
+After months on both, here’s my no-fluff comparison:
+
+<table>
+  <thead>
+    <tr>
+      <th>Feature</th>
+      <th>GCP</th>
+      <th>AWS</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Ease of setup</strong></td>
+      <td>Cleaner UX, great docs</td>
+      <td>Overwhelming but flexible</td>
+    </tr>
+    <tr>
+      <td><strong>Serverless inference</strong></td>
+      <td>Vertex AI is well-integrated</td>
+      <td>SageMaker powerful but heavy</td>
+    </tr>
+    <tr>
+      <td><strong>Startup credits</strong></td>
+      <td>Easier to obtain</td>
+      <td>More structured, slower approval</td>
+    </tr>
+    <tr>
+      <td><strong>Latency management</strong></td>
+      <td>Solid global load balancing</td>
+      <td>Superior caching options</td>
+    </tr>
+    <tr>
+      <td><strong>Developer sanity</strong></td>
+      <td>🟢 8/10</td>
+      <td>🔴 6/10</td>
+    </tr>
+  </tbody>
+</table>
+
+
+> **Verdict:** GCP for prototypes and fast iteration. AWS for scale, if you can afford the overhead.
+
+---
+
+## 5. Sanity: The Hidden Constraint
+
+AI infrastructure can feel like wrestling fog.  
+Logs don’t match, GPUs go idle, APIs timeout, and you start to question your life choices.
+
+Sanity isn’t about controlling everything — it’s about controlling *enough*.
+
+What helped me most:
+
+- **Automate deploys.** If pushing code feels heavy, you’ll delay improvements.  
+- **Use staging pipelines.** One bad model update can nuke your confidence.  
+- **Timebox experiments.** Don’t spend a week on marginal gains.  
+- **Monitor yourself.** You’re part of the system too.
+
+No stack is worth burnout.
+
+---
+
+## 6. What I’d Do Differently
+
+If I were starting again:
+
+1. **Pick one cloud.** Avoid multi-cloud until you absolutely need it.  
+2. **Set latency targets early** (e.g., &lt;1.5s P95). Build around them. 
+3. **Budget at 10× your estimate** — because you will underestimate.  
+4. **Prioritize explainability logs** (inputs + outputs). They save lives.  
+5. **Automate cost alerts** the same way you’d monitor uptime.
+
+---
+
+## Closing Thoughts
+
+AI inference isn’t a technical challenge — it’s a **design challenge**.  
+You’re designing a system that users can trust, afford, and enjoy waiting for.
+
+Every optimization is a small act of empathy: faster load, clearer feedback, fewer surprises.
+
+I used to think scaling was about infrastructure.  
+Now I think it’s about rhythm — building systems that respond as naturally as a conversation.
+
+---
+
+### Further Reading
+
+- [Google Cloud — Designing for Latency](https://cloud.google.com/architecture/designing-for-latency)  
+- [AWS Well-Architected Framework (AI/ML Lens)](https://docs.aws.amazon.com/wellarchitected/latest/ai-ml-lens/welcome.html)  
+- [Best Practices for Cost Optimization in AI Inference](https://www.databricks.com/blog/cost-optimization-ai)
+
+---
+
+### Music for Focus
+
+🎧 *“Division” by Lane 8* — calm precision, one loop at a time.
+
+---
+
+*This post is part of my “AI in Motion” series — field notes from scaling small AI systems that stay fast, affordable, and human.*

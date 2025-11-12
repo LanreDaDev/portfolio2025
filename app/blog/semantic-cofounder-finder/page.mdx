@@ -1,0 +1,144 @@
+export const metadata = {
+  title: 'How I Built a Semantic Cofounder Finder with AI',
+  description:
+    'From embeddings to vector search — lessons in building an AI people search engine that actually worked.',
+  alternates: {
+    canonical: '/blog/semantic-cofounder-finder',
+  },
+};
+
+<Cover
+  src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1400&q=80"
+  alt="Abstract network of connected nodes — Unsplash"
+  caption="Unsplash / Hal Gatewood"
+/>
+
+# How I Built a Semantic Cofounder Finder with AI
+
+Everyone says finding a cofounder is like dating.  
+But most cofounder platforms match like job boards.  
+
+I wanted to see if AI could do better — not by comparing skills or titles, but by matching **intent**, **values**, and **goals** using natural language.  
+That's how the **Semantic Cofounder Finder** started — a small experiment that turned into one of the most interesting AI projects I've ever built.
+
+---
+
+## The Problem
+
+Existing cofounder sites felt transactional: fill a form, get a list, hope for chemistry.  
+They match on **metadata**, not meaning.
+
+But founders don't just look for "a backend engineer with React experience."  
+They look for someone who *thinks* the same way about risk, ambition, and product vision.
+
+So I asked:  
+> "What if people could describe their ideal cofounder in their own words — and AI understood it?"
+
+---
+
+## Step 1: Turning Language Into Meaning
+
+The first breakthrough was realizing I didn't need traditional search.  
+I needed **semantic search** — finding *conceptually similar* text, not exact matches.
+
+I used OpenAI's `text-embedding-ada-002` model to convert every founder bio and project description into 1,536-dimensional vectors — basically, compressed "thought fingerprints."
+
+Then, instead of SQL, I queried via **cosine similarity** in a vector database.
+
+### Stack
+
+- **Frontend:** Next.js + Tailwind  
+- **Backend:** Node.js / Express  
+- **Database:** MongoDB (initially), then migrated to **Supabase + pgvector**  
+- **AI:** OpenAI embeddings + semantic similarity scoring  
+
+The first working prototype returned eerily good matches.  
+People searching "technical but creative cofounder for AI education startup" found profiles describing *"building tools for human learning with LLMs."*  
+That's semantic resonance — not keyword overlap.
+
+---
+
+## Step 2: Ranking by Relatability
+
+Good matching wasn't enough.  
+Results still needed ranking that felt human — not mathematical.
+
+So I built a hybrid scoring system:
+
+```js
+final_score = (semantic_similarity * 0.7) + (activity_score * 0.2) + (shared_tags * 0.1)
+```
+
+That blend of meaning, activity, and shared interest gave the list texture.  
+The difference was subtle, but people instantly trusted the results more.
+
+When users say "this feels right," that's your product-market signal.
+
+---
+
+## Step 3: Lessons From Real Users
+
+When I launched the MVP, about 16 users signed up within the first week, generating over 100 searches.  
+No ads — just organic curiosity from founder communities.
+
+Their feedback taught me more than the code:
+
+**Trust > Accuracy.** People wanted to know why a match appeared. Transparency mattered more than perfect recall.
+
+**Cold starts kill momentum.** Without enough profiles, the search felt empty — a common challenge for two-sided markets.
+
+**LLM phrasing ≠ user phrasing.** Not everyone speaks like a prompt. The model needed fine-tuning to handle "vibes," not just structure.
+
+---
+
+## Step 4: Cost, Scalability, and Sanity
+
+I learned fast that good embeddings aren't free.  
+MongoDB Atlas + third-party API calls added up fast — so I rebuilt on Supabase to take advantage of Postgres extensions and my cloud credits.
+
+Key optimizations:
+
+- Batched embedding generation with exponential backoff.
+- Caching normalized embeddings to avoid reprocessing.
+- Stored vectors in pgvector instead of external API calls.
+
+**The result:**  
+I went from ~$80/month in hosting to ~$8/month — and performance improved.
+
+---
+
+## Takeaways for Builders
+
+**Meaning is a feature.** Users feel the difference when a system understands their intent.
+
+**Search is UX.** How you rank, explain, and display results determines trust.
+
+**Start narrow.** Matching cofounders is hard; matching anyone is impossible.
+
+**Good AI ≠ good product.** The human experience layer matters just as much.
+
+---
+
+## Reflection
+
+The Semantic Cofounder Finder wasn't a massive startup.  
+It was something better — a lab for building intuition about human-language systems.  
+It taught me how to make AI useful, not just intelligent.
+
+And maybe someday, I'll revisit it — this time with a real network effect behind it.
+
+---
+
+## Further Reading
+
+- Vector Databases and the Future of Search
+- Designing Trust in Recommendation Systems
+- Supabase + pgvector Documentation
+
+## Music for Focus
+
+🎧 "Dawn Chorus" by Boards of Canada — for when your brain is mapping meaning into space.
+
+---
+
+*This post is part of my "AI in Motion" series — hands-on lessons from building semantic, language-first products that bridge human intent and machine understanding.*

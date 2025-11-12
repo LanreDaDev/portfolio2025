@@ -136,10 +136,11 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <div className="flex-1">
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Focused on creating intuitive and performant web experiences.
-            Bridging the gap between design and development.
-          </p>
+         <p className="text-zinc-600 dark:text-zinc-400">
+  Focused on building intelligent, intuitive, and performant web experiences —
+  bridging design, engineering, and applied AI.
+</p>
+
         </div>
       </motion.section>
 

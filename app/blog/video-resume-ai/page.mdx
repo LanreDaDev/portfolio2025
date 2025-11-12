@@ -1,0 +1,145 @@
+export const metadata = {
+  title: 'Building the Future of Video Resumes with AI',
+  description:
+    'Rethinking professional storytelling through interactive video, AI, and UX design.',
+  alternates: {
+    canonical: '/blog/video-resume-ai',
+  },
+};
+
+<Cover
+  src="https://images.unsplash.com/photo-1758521540165-b7e99f9a98ce?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=2232"
+  alt="Person recording a video presentation — Unsplash"
+  caption="Unsplash / Vitaly Gariev"
+/>
+
+# Building the Future of Video Resumes with AI
+
+We’ve been telling our professional stories the same way for decades — black text on white paper.  
+But resumes were designed for printers, not people.  
+
+In an era where recruiters watch TikToks more than they read PDFs,  
+I started asking myself: **What would a truly modern resume look like?**  
+
+That question became the seed for my video-based resume platform —  
+a project that blends **AI**, **UX**, and **storytelling** to help people present their authentic selves.
+
+---
+
+## The Problem: Words Flatten People
+
+Traditional resumes reduce multidimensional humans into bullet points.  
+They hide personality, presence, and communication — the very traits that often decide hiring outcomes.
+
+Even video interviews today are reactive, not expressive.  
+Candidates *answer* prompts instead of *telling* stories.
+
+So the challenge wasn’t just “make a video resume app.”  
+It was: **Can we design a medium where people feel seen, not scanned?**
+
+---
+
+## The Vision: From Résumé to Narrative
+
+The idea was simple:  
+Let users record short, guided clips — 30 to 60 seconds each — that capture the “why” behind the work.
+
+Then, layer **AI** on top to handle structure and delivery:
+
+- Generate concise video summaries for busy recruiters.  
+- Transcribe and auto-tag key skills.  
+- Provide subtle feedback on tone, clarity, and pacing.  
+- Build searchable profiles based on *expression*, not just text.
+
+The goal: an interface where people’s stories feel alive,  
+and hiring feels less like filtering, more like discovery.
+
+---
+
+## The Core Stack
+
+Building this wasn’t about cutting-edge models — it was about **orchestration**.
+
+- **Frontend:** Next.js + Tailwind + Framer Motion  
+- **Backend:** Node / FastAPI hybrid for video processing  
+- **AI Layer:** Whisper for transcription, GPT-4o for semantic tagging  
+- **Storage & Streaming:** Supabase + Mux  
+- **Analytics:** Simple events pipeline for engagement and recruiter behavior
+
+Each recording triggers an async chain: upload → transcribe → analyze → enrich → store.  
+What made it magical wasn’t the pipeline — it was the UX feedback loop.
+
+---
+
+## The AI Layer: Understanding, Not Grading
+
+Most “AI hiring tools” use models to *score* people.  
+I wanted the opposite — an AI that helps candidates *communicate* better.
+
+Instead of judgmental scores, the system highlights moments of clarity, filler words, and delivery rhythm.  
+Think of it as **AI as a coach**, not a gatekeeper.
+
+One user told me:  
+> “It felt like having a calm interviewer who actually wanted me to do well.”  
+
+That line stuck with me. That’s what the entire project was about.
+
+---
+
+## Design Challenges
+
+1. **Vulnerability in Front of the Camera**  
+   Many users feel awkward recording themselves.  
+   → I designed guided scripts and ambient background prompts to make it feel conversational.
+
+2. **Performance vs. Authenticity**  
+   Too much editing makes it fake; too little makes it unpolished.  
+   → We added auto-cuts and lighting normalization while keeping facial motion intact.
+
+3. **Trust in AI Feedback**  
+   People don’t trust black-box analysis.  
+   → Every AI insight includes an example quote or timestamp for context.
+
+---
+
+## What I Learned About Product and People
+
+- **Tech is easy when the emotion is clear.**  
+  Once I knew I wanted users to feel *seen*, every technical choice aligned.
+
+- **Emotion is a UX feature.**  
+  The smallest things — the pacing of captions, the tone of AI summaries — shape trust.
+
+- **Distribution is part of design.**  
+  Building wasn’t enough; convincing people to *try* it was a separate design problem.
+
+---
+
+## The Bigger Picture
+
+We’re entering an age where **AI meets self-expression.**  
+Where creative, emotional communication will define employability more than credentials.  
+
+Video resumes aren’t about replacing LinkedIn.  
+They’re about reclaiming the narrative — letting your *voice*, *energy*, and *story* do the talking.
+
+Someday soon, we might scroll job candidates the same way we scroll content:  
+searching not for keywords, but for resonance.
+
+---
+
+### Further Reading
+
+- [Designing for Vulnerability in AI Products](https://uxdesign.cc/designing-for-vulnerability-in-ai-products)  
+- [AI-Driven Storytelling Interfaces](https://towardsdatascience.com/storytelling-with-ai)  
+- [Building with Whisper + GPT-4o for Voice Applications](https://platform.openai.com/docs/guides/speech-to-text)
+
+---
+
+### Music for Focus
+
+🎧 *“Midnight City” by M83* — bright, cinematic, and forward-looking.
+
+---
+
+*This post is part of my “Human Interface” series — essays on building technology that amplifies authenticity instead of automation.*

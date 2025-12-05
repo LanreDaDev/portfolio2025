@@ -112,69 +112,69 @@ export const BLOG_POSTS: BlogPost[] = [
   link: '/blog/uber-fatal-flaw',
   uid: 'blog-uber-flaw',
 },
-  {
-    title: 'What 1,000+ Hours and a 4.98 Uber Rating Taught Me About Product-Market Fit',
-    description:
-      'Lessons on incentives, feedback loops, and user obsession from 1,000 hours behind the wheel.',
-    link: '/blog/uber-product-market-fit',
-    uid: 'blog-1',
-  },
-  {
-    title: 'The Only Way to Beat Uber Is to Fix the One Thing They Ignore',
-    description:
-      'Exploring the silent gap in Uber’s product strategy — and what it teaches about customer intimacy and emotional UX.',
-    link: '/blog/beat-uber-by-fixing-the-gap',
-    uid: 'blog-2',
-  },
-  {
-    title: 'How 2,000 Uber Rides Made Me a Better Engineer',
-    description:
-      'Driving taught me more about system design, patience, and feedback loops than any tech job ever did.',
-    link: '/blog/uber-taught-me-engineering',
-    uid: 'blog-3',
-  },
-  {
-    title: 'Why the Uber Product Is Almost Perfect',
-    description:
-      'A breakdown of Uber’s product architecture through the lens of incentives, data, and trust design.',
-    link: '/blog/why-uber-product-is-perfect',
-    uid: 'blog-4',
-  },
-  {
-    title: 'How I Built a Semantic Cofounder Finder with AI',
-    description:
-      'From embeddings to vector search — lessons in building an AI people search engine that actually worked.',
-    link: '/blog/semantic-cofounder-finder',
-    uid: 'blog-5',
-  },
-  {
-    title: 'AI Is the Easy Part — Everything Else Is Product Work',
-    description:
-      'What I learned after shipping multiple AI projects: it’s not the model, it’s the feedback loop.',
-    link: '/blog/ai-is-the-easy-part',
-    uid: 'blog-6',
-  },
-  {
-    title: 'The 3-Year Gap That Taught Me Everything About Resilience',
-    description:
-      'Rebuilding after career stagnation — lessons on discipline, self-belief, and the cost of persistence.',
-    link: '/blog/resilience-gap-story',
-    uid: 'blog-7',
-  },
-  {
-    title: 'Building the Future of Video Resumes with AI',
-    description:
-      'Rethinking professional storytelling through interactive video, AI, and UX design.',
-    link: '/blog/video-resume-ai',
-    uid: 'blog-8',
-  },
-  {
-    title: 'Latency, Cost, and Sanity: Lessons from AI Inference in Production',
-    description:
-      'What I learned scaling inference on GCP and AWS — and how to balance cost, speed, and reliability.',
-    link: '/blog/ai-inference-lessons',
-    uid: 'blog-9',
-  },
+  // {
+  //   title: 'What 1,000+ Hours and a 4.98 Uber Rating Taught Me About Product-Market Fit',
+  //   description:
+  //     'Lessons on incentives, feedback loops, and user obsession from 1,000 hours behind the wheel.',
+  //   link: '/blog/uber-product-market-fit',
+  //   uid: 'blog-1',
+  // },
+  // {
+  //   title: 'The Only Way to Beat Uber Is to Fix the One Thing They Ignore',
+  //   description:
+  //     'Exploring the silent gap in Uber’s product strategy — and what it teaches about customer intimacy and emotional UX.',
+  //   link: '/blog/beat-uber-by-fixing-the-gap',
+  //   uid: 'blog-2',
+  // },
+  // {
+  //   title: 'How 2,000 Uber Rides Made Me a Better Engineer',
+  //   description:
+  //     'Driving taught me more about system design, patience, and feedback loops than any tech job ever did.',
+  //   link: '/blog/uber-taught-me-engineering',
+  //   uid: 'blog-3',
+  // },
+  // {
+  //   title: 'Why the Uber Product Is Almost Perfect',
+  //   description:
+  //     'A breakdown of Uber’s product architecture through the lens of incentives, data, and trust design.',
+  //   link: '/blog/why-uber-product-is-perfect',
+  //   uid: 'blog-4',
+  // },
+  // {
+  //   title: 'How I Built a Semantic Cofounder Finder with AI',
+  //   description:
+  //     'From embeddings to vector search — lessons in building an AI people search engine that actually worked.',
+  //   link: '/blog/semantic-cofounder-finder',
+  //   uid: 'blog-5',
+  // },
+  // {
+  //   title: 'AI Is the Easy Part — Everything Else Is Product Work',
+  //   description:
+  //     'What I learned after shipping multiple AI projects: it’s not the model, it’s the feedback loop.',
+  //   link: '/blog/ai-is-the-easy-part',
+  //   uid: 'blog-6',
+  // },
+  // {
+  //   title: 'The 3-Year Gap That Taught Me Everything About Resilience',
+  //   description:
+  //     'Rebuilding after career stagnation — lessons on discipline, self-belief, and the cost of persistence.',
+  //   link: '/blog/resilience-gap-story',
+  //   uid: 'blog-7',
+  // },
+  // {
+  //   title: 'Building the Future of Video Resumes with AI',
+  //   description:
+  //     'Rethinking professional storytelling through interactive video, AI, and UX design.',
+  //   link: '/blog/video-resume-ai',
+  //   uid: 'blog-8',
+  // },
+  // {
+  //   title: 'Latency, Cost, and Sanity: Lessons from AI Inference in Production',
+  //   description:
+  //     'What I learned scaling inference on GCP and AWS — and how to balance cost, speed, and reliability.',
+  //   link: '/blog/ai-inference-lessons',
+  //   uid: 'blog-9',
+  // },
 ];
 
 

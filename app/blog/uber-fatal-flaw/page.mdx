@@ -1,0 +1,144 @@
+export const metadata = {
+  title: 'I Spent a Year Trying to Hack Uber. I Found Its Fatal Flaw.',
+  description:
+    'A software engineer attempts to reverse-engineer the ride-sharing system. What I discovered about Uber\'s algorithm—and its perfection—changed how I think about systems design.',
+  alternates: {
+    canonical: '/blog/uber-fatal-flaw',
+  },
+   openGraph: {
+    title: 'I Spent a Year Trying to Hack Uber. I Found Its Fatal Flaw.',
+    description: 'A software engineer attempts to reverse-engineer the ride-sharing system. What I discovered about Uber\'s algorithm—and its perfection—changed how I think about systems design.',
+    url: 'https://lanreadebayo.com/blog/uber-fatal-flaw',
+    images: [
+      {
+        url: 'https://parecord-videos.s3.us-west-2.amazonaws.com/Untitled+design.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'I Spent a Year Trying to Hack Uber. I Found Its Fatal Flaw.',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'I Spent a Year Trying to Hack Uber. I Found Its Fatal Flaw.',
+    description: 'A software engineer attempts to reverse-engineer the ride-sharing system. What I discovered about Uber\'s algorithm—and its perfection—changed how I think about systems design.',
+  },
+};
+
+<Cover
+  src="https://parecord-videos.s3.us-west-2.amazonaws.com/Untitled+design.jpg"
+  alt="Uber profile highlight"
+  caption="Uber / Lanre Adebayo"
+/>
+
+# I Spent a Year Trying to Hack Uber. I Found Its Fatal Flaw.
+
+It took me almost exactly one year from the moment I submitted my application to the moment I gave my first Uber ride.
+
+The sign-up process isn't complicated, but it tests three things: patience, persistence, and a financial buffer. You can apply in an afternoon. The real friction comes later, piece by piece. You might fail a vehicle inspection because the mechanic sees a dash light you didn't know existed, or a windshield chip you didn't notice because it wasn't even on the driver's side. The police check office could be backed up, turning a 10-day wait into a month. Or, you might realize you can't afford the commercial vehicle registration because of two old speeding tickets you'd forgotten about.
+
+You can't get that registration until those tickets are cleared. Clearing them means immediate payment plus late fees.
+
+My first attempt staggered right at those final steps because the combined hit was just over fifteen hundred dollars. That was near the tail end of a freelance engagement, and six hundred dollars a week was more important to me than a potential side hustle that might take a month or more to pay off.
+
+So I paused it. It wasn't canceled, but it was dead. When I revisited it a year later, I had to start from the very beginning. But this time, I had the money to clear the tickets outright, and I'd taken a break between contracts. The conditions were fertile. I pushed the whole thing through in two weeks.
+
+My trade is software development. I've spent about six years in it, specializing in early-stage companies. I've attempted a pair of my own ventures. My pattern is to view any new system as an object to be understood, reverse-engineered, and then optimized.
+
+So my plan as a new driver wasn't just to drive. It was to first run a two-week baseline study—zero strategy mode, just soaking in the app's flow and the city's pulse. After that, I would turn on data collection mode. I wanted to understand the underlying logic of ride dispatch to hack the effort-to-reward ratio.
+
+In short: I wanted to make more money while mostly chilling in a parking lot, programming on my laptop with my phone's hotspot.
+
+I tried three specific strategies to do that. Here they are.
+
+## Strategy 1: The Income Map Guesswork
+
+My first real attempt came after about a month of driving, with 300 rides under my belt. I focused on the morning rush hour—the real gold rush for an Uber driver, with higher per-hour totals.
+
+My plan was pure data-crunching. I got the city's income data by neighborhood and cross-referenced it with the main centers of work:
+
+- Downtown core (white-collar workers)
+- Industrial parks in the northwest and far east (mix of blue and white-collar)
+- Road work and construction sites (mostly blue-collar)
+- Large malls, retail centers, hospitals, and train stations
+
+My logic was this: Identify the average clock-in times for each work zone, then park in a neighborhood within 30 minutes of that zone. The neighborhood had to fit the income profile of the average worker there.
+
+Here's how I saw the clock-in patterns:
+
+- White-collar zones: 9–10 AM
+- Blue-collar zones: As early as 5 AM until about 8 AM
+- Industrial parks: A mix of both
+- Retail: After 7 AM
+- Hospitals: Around 7 AM
+- Train stations: A wildcard—could be pickup or drop-off, but more likely pickup before 7 AM
+
+My plan in action: Start every morning at 5:30–6:00 AM. If I was on the west side at 5:45 AM, I'd find the nearest blue-collar work zone (since they'd be clocking in within the next 30 minutes), locate a neighborhood with a median household income under $80k/year and within a 30-minute drive, and park there. If there was a retail center or train station nearby, I'd hedge my bet and park in that lot.
+
+This strategy was flawed due to some fundamental assumptions:
+
+I completely ignored volume. A wealthy neighborhood might have fewer early-morning riders, but what if every one of them took an Uber—or worse, what if one was headed to the airport for a coveted, high-paying airport run? A poorer neighborhood might have more shift workers, but maybe none of them used ride-share, opting for the bus instead (though bus schedules are infrequent before 7 AM).
+
+I assumed Uber was the default. Let's say five people in my target neighborhood did need to clock in at 6 AM. How many actually opened the Uber app? Maybe they carpooled. My model assumed Uber was their first choice.
+
+I was still at Uber's mercy. We all know the algorithm mostly prioritizes the closest driver. But does it always? When it doesn't, what's the deciding factor? Driver rating? Time online? Some secret internal score? The app updates every two weeks. For all I knew, the dispatch logic could change with any update. I was trying to build a clockwork system on top of quicksand.
+
+My core premise was shaky. I assumed people living within 30 minutes of their workplace would be more likely to use Uber. In reality, the further you live from work, the less predictable and available public transit becomes, which might push you to Uber, especially since you can reserve a ride.
+
+I treated ETA as static. During rush hour in a city of 1.5 million people, a typical 15-minute trip can balloon to over 30. Traffic is nearly impossible to predict.
+
+I tried a variation of this with airport trips, but the outcome was even worse. Even with flight data, I don't know enough about the profile of passengers flying on certain days to predict where I'd pick them up from, and the volume simply isn't there. It's better to just camp out at the airport parking lot.
+
+Do you know where this thinking actually worked? With white-collar workers. They tend to live within 30 minutes of their workplace, they start work later (so I could start later—I moved my start time to 6:30), and they Uber a lot more frequently.
+
+This was the first time the main lesson dawned on me: Sometimes the obvious answer and the simplest strategy is the best course of action.
+
+The first try felt clever until I attempted to put it into practice. Then it just felt overcomplicated. The real answer was simpler and easier.
+
+## Strategy 2: The Personal Heatmap Dream
+
+After about 700 rides and a few more months went by, I thought I'd cracked it. (I can be very stubborn about solving a problem—a strength and a weakness, depending on the context.) I had what felt like a statistically significant dataset; I'd driven all over the city. The idea was simple: if I could just map every single trip, I could make my own personal heatmap.
+
+Uber's own heat map is very general, breaking a city of over 700 km² into just four zones. Each zone is larger than the area of Washington, D.C., and the heat map updates only every 10 minutes.
+
+My first stop was Uber's own API. Surely, as a driver, I could access my trip history with coordinates. Nope. Dead end right away. Uber's API surfaces city-level coordinates, but not the precise pickup and drop-off pins. That data stays locked up.
+
+Plan B. I noticed that when I used Waze for navigation, Uber sent the trip details over. I figured I could pull my location history from Waze's API and cross-reference it with my Uber trip timestamps. Another dead end. Waze's API doesn't give you historical trip data either; it seemed heavily focused on deep linking.
+
+This left me with one last, absurd idea. Every Uber ride receipt includes a tiny, static map image with a rough route drawn on it. I thought: What if I created an image embedding of all the polygons of Uber's city map, with street details and other identifiable markers, embedded the thousands of trip map screenshots, and then found the similarity score to a polygon to pinpoint the exact street? Or maybe try my luck and use a multimodal LLM—like GPT-4V—to analyze those screenshots, get the street names and landmarks, and reverse-geocode approximate pickup and drop-off points?
+
+By then, I had over a thousand rides. The sheer manual labor of processing and cleaning that data for an LLM, not to mention the cost and the margin of error… it would have been hundreds of hours of work. For what? A slight, speculative edge? The effort-to-reward ratio was definitely not worth it. I was trying to mine for gold with a teaspoon.
+
+Again, the lesson jumped out at me: Simplicity is easiest. Set a drive schedule and set breaks. This will get you closer to that favorable effort-to-reward ratio.
+
+## Strategy 3: The Collaborative App That Wasn't
+
+This was the idea that felt like a real precursor to disruption. I gave up on going solo. The effort-to-signal ratio with one driver's data was too high. But if I could get multiple drivers logging their location and earnings, the signal would emerge—maybe even lead to monetization opportunities beyond just me.
+
+The concept was a utility app for drivers. Mileage counters, tax calculators, earnings trackers—tools they'd actually want to use. In the background, with their permission, it would collect anonymized location and ride data. Everyone gets a useful tool; I get a robust, real-time heatmap.
+
+Then I hit the first wall: I was the main guinea pig. And I realized I didn't use any mileage or tax-sorting apps. I didn't know the first thing about how any of these things work—is it jurisdiction-based? A legal issue? Regardless, I was not interested in going down that rabbit hole while I hadn't solved the first one I'd gotten myself into.
+
+The second wall was operational. The most valuable data is from peak hours—rush hour, weekend nights. That's also when a driver's attention needs to be 100% on the road. Manually tapping to log a pickup location during a busy Friday night surge is a safety hazard and a non-starter.
+
+I even flirted with a dark-pattern workaround: a music app that played AI-generated ambient tracks. It would ask for always-on location and microphone access (ostensibly to adjust volume to ambient noise). The privacy implications were immediate and obvious. I started reading into mobile OS permissions, App Tracking Transparency frameworks—and I realized I was in way over my head. I wasn't going to build a side-hustle optimizer by skirting user trust.
+
+The collaborative dream died there. It wasn't a tech problem. It was a human problem. To get the data, I needed engagement. To get engagement, I needed to provide overwhelming value or… become something I didn't want to be.
+
+## Conclusion
+
+If this was a boxing match between me and the Uber system, this was the 12th-round TKO that happened due to my fatigue. I had to give it up to Uber; they built a great system.
+
+Here's the truth I learned: The system is designed to reward you just enough to keep going, but not enough to make any complex tactic worthwhile. The best hack is the experience of being on the road—knowing when it's busy. Following Uber's own heat map will get you a consistent hourly rate after about two hours.
+
+Trying to hack the system to get a few drivers an extra 5–10 bucks a day? That's the type of work that requires a fifty-dollar-an-hour engineer.
+
+I'm not saying it isn't worth it. I'm saying I'm not an accountant. And to me, that looks less like disruption and more like nickel-and-diming a giant.
+
+But remember, I'm stubborn. Uber and I have a rematch.
+
+I've been studying the game film, identifying its strengths, weaknesses, opportunities, and threats. And I've reached a promising conclusion:
+
+The Uber driver system is perfect.
+
+And that perfection is the key to its disruption.

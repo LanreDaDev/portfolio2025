@@ -106,6 +106,13 @@ end: 'Present',
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+  title: 'I Spent a Year Trying to Hack Uber. I Found Its Fatal Flaw.',
+  description:
+    'A software engineer attempts to reverse-engineer the ride-sharing system. What I discovered about Uber\'s algorithm—and its perfection—changed how I think about systems design.',
+  link: '/blog/uber-fatal-flaw',
+  uid: 'blog-uber-flaw',
+},
+  {
     title: 'What 1,000+ Hours and a 4.98 Uber Rating Taught Me About Product-Market Fit',
     description:
       'Lessons on incentives, feedback loops, and user obsession from 1,000 hours behind the wheel.',

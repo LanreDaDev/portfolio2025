@@ -106,12 +106,19 @@ end: 'Present',
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+  title: '2,000+ Uber Rides Later: A Different Take on Product-Market Fit',
+  description:
+    'A professional Uber driver\'s journey from burnout to building a sustainable system. What I learned about product-market fit, emotional labor, and the hidden engine of scale.',
+  link: '/blog/uber-pmf-alternate',
+  uid: 'blog-uber-pmf-alternate',
+},
+  {
   title: 'I Spent a Year Trying to Hack Uber. I Found Its Fatal Flaw.',
   description:
     'A software engineer attempts to reverse-engineer the ride-sharing system. What I discovered about Uber\'s algorithm—and its perfection—changed how I think about systems design.',
   link: '/blog/uber-fatal-flaw',
   uid: 'blog-uber-flaw',
-},
+}
   // {
   //   title: 'What 1,000+ Hours and a 4.98 Uber Rating Taught Me About Product-Market Fit',
   //   description:

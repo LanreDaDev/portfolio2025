@@ -136,10 +136,10 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <div className="flex-1">
-         <p className="text-zinc-600 dark:text-zinc-400">
+         {/* <p className="text-zinc-600 dark:text-zinc-400">
   Focused on building intelligent, intuitive, and performant web experiences —
   bridging design, engineering, and applied AI.
-</p>
+</p> */}
 
         </div>
       </motion.section>
@@ -216,6 +216,7 @@ export default function Personal() {
         transition={TRANSITION_SECTION}
       >
         <h3 className="mb-3 text-lg font-medium">Blog</h3>
+      
         <div className="flex flex-col space-y-0">
           <AnimatedBackground
             enableHover

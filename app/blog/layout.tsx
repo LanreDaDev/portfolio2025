@@ -32,11 +32,9 @@ function CopyButton() {
 
 export default function LayoutBlogPost({
   children,
-    params,
 
 }: {
   children: React.ReactNode
-  params: { slug: string }
 
 }) {
     const pathname = usePathname()
